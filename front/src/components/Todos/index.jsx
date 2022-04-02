@@ -35,7 +35,7 @@ function Todos() {
 
   return (
     <div>
-      {todos.map((todo, index) => {
+      {todos.map((todo) => {
         return (
           !todo.completed && (
             <Todo
@@ -43,12 +43,13 @@ function Todos() {
               text={todo.todo}
               done={todo.completed}
               id={todo._id}
+              deleting={todo.deleting}
             />
           )
         );
       })}
       <hr />
-      {todos.map((todo, index) => {
+      {todos.map((todo) => {
         return (
           todo.completed && (
             <Todo
@@ -56,6 +57,7 @@ function Todos() {
               text={todo.todo}
               done={todo.completed}
               id={todo._id}
+              deleting={todo.deleting}
             />
           )
         );

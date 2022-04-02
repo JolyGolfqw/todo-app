@@ -50,6 +50,17 @@ const reducer = (state = initialState, action) => {
         loading: false,
       };
 
+    case "deleting":
+      return {
+        ...state,
+        todos: state.todos.map((item) => {
+          if (item._id === action.payload) {
+            return { ...item, deleting: true };
+          }
+          return item;
+        }),
+      };
+
     case "todos/delete/rejected":
       return { ...state, error: action.payloaad, loading: false };
 
@@ -107,6 +118,7 @@ export const makeCompleted = (id, completed) => {
 
 export const deleteTodo = (id) => {
   return async (dispatch) => {
+    dispatch({ type: "deleting", payload: id });
     try {
       await fetch(`http://localhost:3030/todos/${id}`, {
         method: "DELETE",

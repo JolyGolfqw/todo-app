@@ -5,9 +5,8 @@ import CircleUnchecked from "@material-ui/icons/RadioButtonUnchecked";
 import { useDispatch } from "react-redux";
 import { makeCompleted, deleteTodo } from "../../../redux/features/todos";
 import styles from "./styles.module.css";
-import "./styles.module.css";
 
-function Todo({ text, done, index, id }) {
+function Todo({ text, done, id, deleting }) {
   const dispatch = useDispatch();
 
   const handleChecked = () => {
@@ -16,8 +15,10 @@ function Todo({ text, done, index, id }) {
   };
 
   const handleDelete = (id) => {
-    console.log(id);
     dispatch(deleteTodo(id));
+    console.log(deleting);
+
+
   };
 
   return (
@@ -31,7 +32,7 @@ function Todo({ text, done, index, id }) {
           icon={<CircleUnchecked />}
           checkedIcon={<CircleChecked />}
         />
-        <button onClick={() => handleDelete(id)}>Х</button>
+        <button disabled={deleting} className={deleting ? styles.disabled : '' } onClick={() => handleDelete(id)}>Х</button>
       </div>
     </div>
   );

@@ -94,6 +94,18 @@
   .btnContainer button:hover {
     color: red;  
   }
+
+  .completedContainer button:hover {
+    color: gainsboro
+  }
+
+  .btnContainer .disabled {
+  color: gainsboro
+  }
+
+  .btnContainer .disabled:hover {
+    color: gainsboro
+  }
   
   .check {
     color: #0d6efd!important;
